@@ -41,8 +41,15 @@ $ pip install Django==2.1.5
 $ pip install flask
 ```
 
-6) Запустим Django
+6) Создадим файлы стартового проекта
 
 ```
+$ django-admin startproject my_project
+```
+
+7) Запустим Django
+
+```
+$ cd myproject
 $ python manage.py runserver
 ```
