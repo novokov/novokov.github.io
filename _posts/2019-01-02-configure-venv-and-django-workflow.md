@@ -2,7 +2,6 @@
 layout: post
 ---
 
-# Настройка venv и запуск Django
 
 1) Проверим текущую версию Python.
 
@@ -50,6 +49,6 @@ $ django-admin startproject my_project
 7) Запустим Django
 
 ```
-$ cd myproject
+$ cd my_project
 $ python manage.py runserver
 ```
