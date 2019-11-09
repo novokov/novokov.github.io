@@ -1,5 +1,7 @@
 ---
 layout: post
+title: "Настройка venv и Django Workflow"
+categories: django
 ---
 
 

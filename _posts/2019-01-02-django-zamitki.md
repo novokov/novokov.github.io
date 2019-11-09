@@ -1,8 +1,9 @@
 ---
 layout: post
+title: "Заметки по Django"
+categories: django
 ---
 
-# Django заметки
 
 после создания проекта внутри появятся файлы.
 
@@ -12,7 +13,10 @@ layout: post
 manage.py - консольная утилита
 project-name - папка с названием проекта
 ----
-	|- __init__.py - файл, чтобы сообщить питону что данная директория является пакетом	|- settings.py - настройки	|- urls.py - корневая URL привязка	|- wsgi.py - файл для вебсерверов
+	|- __init__.py - файл, чтобы сообщить питону что данная директория является пакетом
+	|- settings.py - настройки
+	|- urls.py - корневая URL привязка
+	|- wsgi.py - файл для вебсерверов
 
 ```
 
@@ -51,7 +55,10 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, '_apps_'))
 manage.py
 
 project-name
-	|- __init__.py	|- settings.py	|- urls.py	|- wsgi.py
+	|- __init__.py
+	|- settings.py
+	|- urls.py
+	|- wsgi.py
 	|-apps
 		|-custom_app_name
 			|- migrations
