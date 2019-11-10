@@ -19,6 +19,8 @@ permalink: /cheatsheets/
 
 - <a href="/cheatsheets/Python-3-Cheat-Sheet.pdf" target="_blank">Python 3 Cheatsheet</a>
 - <a href="/cheatsheets/Python-Basics-Cheatsheet.pdf" target="_blank">Python Basics</a>
+- <a href="/cheatsheets/python_cheat_sheet_extended.pdf" target="_blank">Python Extended Cheatsheet</a>
+
 
 
 <h3>Pandas, Numpy</h3>
