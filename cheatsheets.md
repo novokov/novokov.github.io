@@ -32,7 +32,8 @@ permalink: /cheatsheets/
 
 <h3>Pandas, Numpy</h3>
 
-- [Awesome cheatsheet](#)
+- [Импорт данных](/cheatsheets/Importing Data Cheatsheet.pdf)
+- <a href="/cheatsheets/Importing Data Cheatsheet.pdf" target="_blank">Импорт данных</a>
 - [Awesome cheatsheet](#)
 - [Awesome cheatsheet](#)
 - [Awesome cheatsheet](#)
