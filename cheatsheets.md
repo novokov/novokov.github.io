@@ -43,3 +43,6 @@ permalink: /cheatsheets/
 
 - <a href="/cheatsheets/SQL-cheat-sheet.pdf" target="_blank" rel="nofollow">SQL Cheatsheet</a>
 - <a href="/cheatsheets/mysql-reference-sheet.pdf" target="_blank" rel="nofollow">mySQL Reference Cheatsheet</a>
+
+<h2>Другое</h2>
+- <a href="/cheatsheets/zsh-full gulde.html" target="_blank" rel="nofollow">ZSH. Гайд по установке и тп.</a>

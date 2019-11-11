@@ -1,0 +1,1053 @@
+<div class="article-wrap">
+      <p><i>Apple’s heavy hand is forcing adoption of POSIX and even switch to Python</i></p>
+<p align="right">
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=es&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="Español (Spanish)" width="20" height="14" src="../images/flags/es.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=fr&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="Français (French)" width="20" height="14" src="../images/flags/fr.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=de&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="Deutsch (German)" width="20" height="14" src="../images/flags/de.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=it&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="Italiano" width="20" height="14" src="../images/flags/it.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=pt&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="Português" width="20" height="14" src="../images/flags/pt.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=ru&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="Cyrillic Russian" width="20" height="14" src="../images/flags/ru.png"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=zh-CN&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="中文 (简体) Chinese (Simplified)" width="20" height="14" src="../images/flags/cn.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=ja&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="日本語 Japanese" width="20" height="14" src="../images/flags/jp.gif"></a> &nbsp;
+<a target="_blank" href="https://translate.google.com/translate?sl=auto&amp;tl=ko&amp;u=https%3A%2F%2Fwilsonmar.github.io%2Fzsh%2F"><img alt="한국어 Korean" width="20" height="14" src="../images/flags/ko.gif"></a>
+</p>
+
+<section id="table-of-contents" class="toc">
+  <header>
+    <h3><i class="fa fa-book"></i> Overview</h3>
+  </header>
+<div id="drawer">
+<ul id="markdown-toc">
+  <li><a href="#news" id="markdown-toc-news">News</a></li>
+  <li><a href="#tldr-summary" id="markdown-toc-tldr-summary">TL;DR Summary</a></li>
+  <li><a href="#zsh-is-already-there-before-catalina" id="markdown-toc-zsh-is-already-there-before-catalina">Zsh is already there (before Catalina)</a></li>
+  <li><a href="#why-the-disruption" id="markdown-toc-why-the-disruption">Why the disruption?</a>    <ul>
+      <li><a href="#macos-does-not-have-latest-zsh" id="markdown-toc-macos-does-not-have-latest-zsh">macOS does not have latest Zsh</a></li>
+      <li><a href="#install-latest-z-shell-zsh-using-homebrew" id="markdown-toc-install-latest-z-shell-zsh-using-homebrew">Install latest Z Shell (zsh) using Homebrew</a></li>
+      <li><a href="#prompt-settings-are-different" id="markdown-toc-prompt-settings-are-different">Prompt settings are different</a></li>
+      <li><a href="#emulate" id="markdown-toc-emulate">Emulate</a></li>
+      <li><a href="#execute-zsh-temporarily" id="markdown-toc-execute-zsh-temporarily">Execute zsh temporarily</a></li>
+      <li><a href="#default-to-zsh" id="markdown-toc-default-to-zsh">Default to Zsh</a></li>
+      <li><a href="#chsh-to-make-zsh-the-default" id="markdown-toc-chsh-to-make-zsh-the-default">chsh to make zsh the default</a></li>
+      <li><a href="#verify-the-switch" id="markdown-toc-verify-the-switch">Verify the switch</a></li>
+    </ul>
+  </li>
+  <li><a href="#why-z-shell-is-better-than-bash" id="markdown-toc-why-z-shell-is-better-than-bash">Why Z shell is better than Bash</a></li>
+  <li><a href="#script-bashisms-break-in-zsh" id="markdown-toc-script-bashisms-break-in-zsh">Script Bashisms break in Zsh</a></li>
+  <li><a href="#z-shell-plug-ins" id="markdown-toc-z-shell-plug-ins">Z Shell plug-ins</a></li>
+  <li><a href="#z-shell-prompts" id="markdown-toc-z-shell-prompts">Z shell Prompts</a></li>
+  <li><a href="#z-shell-themes" id="markdown-toc-z-shell-themes">Z shell themes</a></li>
+  <li><a href="#bashisms-against-portability" id="markdown-toc-bashisms-against-portability">Bashisms against portability</a>    <ul>
+      <li><a href="#random" id="markdown-toc-random">Random</a></li>
+    </ul>
+  </li>
+  <li><a href="#plugins" id="markdown-toc-plugins">Plugins</a>    <ul>
+      <li><a href="#oh-my-zsh" id="markdown-toc-oh-my-zsh">Oh My Zsh</a></li>
+      <li><a href="#set-zshrc-start-up-commands" id="markdown-toc-set-zshrc-start-up-commands">Set .zshrc start-up commands</a></li>
+      <li><a href="#source-aliases-for-compatibility" id="markdown-toc-source-aliases-for-compatibility">Source aliases for compatibility</a></li>
+    </ul>
+  </li>
+  <li><a href="#change-default-shell-back-to-bash" id="markdown-toc-change-default-shell-back-to-bash">Change default shell back to bash</a></li>
+  <li><a href="#why-not-fish" id="markdown-toc-why-not-fish">Why not Fish?</a></li>
+  <li><a href="#why-not-jump-temporarily-to-python" id="markdown-toc-why-not-jump-temporarily-to-python">Why not jump temporarily to Python?</a></li>
+  <li><a href="#video-tutorials" id="markdown-toc-video-tutorials">Video Tutorials</a></li>
+  <li><a href="#other-resources" id="markdown-toc-other-resources">Other Resources</a></li>
+  <li><a href="#more-on-osx" id="markdown-toc-more-on-osx">More on OSX</a></li>
+</ul>
+
+  </div>
+</section>
+<!-- /#table-of-contents -->
+
+<h2 id="news">News</h2>
+
+<p>At its developer conference on June 4, 2019, Apple stated that, beginning with the Fall 2019 <a target="_blank" href="https://wilsonmar.github.io/apple-mac-osx-versions">Catalina version of macOS</a>, Z shell (zsh) would replace Bash as the <strong>default</strong> shell command language interpreter.</p>
+
+<p>This article presents a deep but hopefully succinct guided tour through Z shell usage and issues.</p>
+
+<h2 id="tldr-summary">TL;DR Summary</h2>
+
+<p>BTW Shells are a command line interface (CLI) that allows users to interact with the computer’s operating system by typing rather than moving a mouse on a GUI (Graphical User Interface).</p>
+
+<p>PROTIP: Ignore fake news clickbait articles such as <a target="_blank" href="https://www.infoq.com/news/2019/06/macos-ditches-bash-for-zsh/">“Upcoming MacOS Catalina to Ditch Bash in Favour of Zsh” (from InfoQ)</a>, which is technicall incorrect. The Apple announcement is about the <strong>default</strong>. After the change goes into effect, Bash will still be installed and you can still <a href="#DefaultDash">change the default back to Bash</a>.</p>
+
+<ul>
+  <li><a href="#Which">Apple already ships Z shell with macOS</a> (as well as the <code class="language-plaintext highlighter-rouge">sh</code> shell interpreter) along with <code class="language-plaintext highlighter-rouge">bash</code>. But <a href="#PromptsDifferent">prompts are not compatible</a>.</li>
+  <li>The version of zsh is likely obsolete. So &lt;a href-“#InstallZsh”&gt;install latest (parallel) version of Zsh&lt;/a&gt; and <a href="#SetZshrc">set <code class="language-plaintext highlighter-rouge">.zshrc</code></a>.</li>
+  <li>
+    <p><a href="#WhyDisruption">Why the disruption: licensing</a></p>
+  </li>
+  <li><a href="#ExecZsh">Execute zsh temporarily</a> or <a href="#DefaultZsh">as default</a></li>
+  <li><a href="#ZshAdvantages">zsh is better than bash/sh in several aspects</a></li>
+  <li><a href="#ZshBreaksBash">Bash scripts break in Zsh</a> (due to “bashisms”)</li>
+  <li><a href="#BashismsBreaksZsh">Bashisms in bash scripts break in zsh</a>, so  existing bash scripts need to be migrated and tested</li>
+  <li>Apple’s disruption opens up a discussion about compatibility of script commands across platforms and POSIX.</li>
+  <li><a href="#DefaultDash">Change the default shell back to bash</a></li>
+  <li><a href="#AlternativeShell">Switch to an alternative shell replacement FISH?</a></li>
+  <li><a href="#PythonAlternative">Exit to Python and back</a> is perhaps the ultimate solution for cross-platform compatibile automation</li>
+</ul>
+
+<hr>
+
+<p>First, open a Terminal on your macOS machine (on Mojave or whatever version).</p>
+
+<p><a name="Which"></a></p>
+
+<h2 id="zsh-is-already-there-before-catalina">Zsh is already there (before Catalina)</h2>
+
+<ol>
+  <li>
+    <p>Identify the version of zsh installed while on Mojave or earlier:</p>
+
+    <pre><strong>zsh --version</strong></pre>
+
+    <p>The response if you are at Mojave version:</p>
+
+    <pre>zsh 5.0.5 (x86_64-apple-darwin14.0)</pre>
+
+    <p>Notice no “GNU”.</p>
+
+    <p>In fact, several shell programs are installed with macOS:</p>
+  </li>
+  <li>
+    <p>Get a list of shells allowed:<a target="_blank" title="2019-02-16" href="http://www.linuxfromscratch.org/blfs/downloads/8.4/BLFS-BOOK-8.4-nochunks.html#zsh">*</a></p>
+
+    <pre><strong>cat /etc/shells</strong></pre>
+
+    <p>The response (on macOS Mojave) is:</p>
+
+    <pre>/bin/bash
+/bin/csh
+/bin/ksh
+/bin/sh
+/bin/tcsh
+/bin/zsh
+</pre>
+
+    <p><a target="_blank" href="https://www.wikiwand.com/en/Z_shell">Wikipedia</a> says “Zsh is an extended Bourne shell with a large number of improvements, including some features of Bash, ksh, and tcsh.” (Korn shell). tcsh (“tee shell”) is the native root shell for BSD-based systems such as FreeBSD, which early versions of MacOS is based. OS X switched from tcsh to bash in version 10.3. tcsh is based on csh, the C-shell.</p>
+
+    <p>See <a target="_blank" href="https://en.wikipedia.org/wiki/Comparison_of_command_shells">Comparison of command shells on Wikipedia</a></p>
+  </li>
+  <li>
+    <p>PROTIP: The predecessor Bourne Shell can still be invoked by the <code class="language-plaintext highlighter-rouge">sh</code> command.</p>
+
+    <pre><strong>sh --version</strong></pre>
+
+    <p>The response on macOS Mojave:</p>
+
+    <pre>GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin18)
+Copyright (C) 2007 Free Software Foundation, Inc.</pre>
+
+    <p><a name="WhyDisruption"></a></p>
+
+    <h2 id="why-the-disruption">Why the disruption?</h2>
+  </li>
+  <li>
+    <p>Obtain the version metadata:</p>
+
+    <pre><strong>bash --version</strong></pre>
+
+    <p>The response on a machine running macOS Mojave:</p>
+
+    <pre>GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin18)
+Copyright (C) 2007 Free Software Foundation, Inc.</pre>
+
+    <p>The “GNU” in the response reminds us that <code class="language-plaintext highlighter-rouge">bash</code> (named as a contraction of “Bourne-Again Shell”), replaces the Bourne Shell by adding <a href="#Bashisms">“Bashisms”</a>.<a target="_blank" href="https://rainbowhackerhorse.github.io/bash-Is-Not-sh/">*</a></p>
+
+    <p>See <a class="vglnk" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)" rel="nofollow"><span>https</span><span>://</span><span>en</span><span>.</span><span>wikipedia</span><span>.</span><span>org</span><span>/</span><span>wiki</span><span>/</span><span>Bash</span><span>_(</span><span>Unix</span><span>_</span><span>shell</span><span>)</span></a></p>
+
+    <p><a target="_blank" href="https://www.theverge.com/2019/6/4/18651872/apple-macos-catalina-zsh-bash-shell-replacement-features">The Verge</a> notes that “Apple is stuck using version 3.2 of bash that has been licensed under GPLv2, as newer versions are licensed under GPLv3. Apple has kept clear of using GPLv3 packages in macOS as the license is generally more restrictive to companies like Apple that sign their own code and it includes explicit patent grants, too.”</p>
+
+    <p><a target="_blank" href="https://en.wikipedia.org/wiki/Associative_arrays">associative arrays</a> was introduced in Bash 4.0 February 2009.</p>
+
+    <p><a target="_blank" href="https://mjtsai.com/blog/2019/06/04/macos-10-15-switches-from-bash-to-zsh/">
+“All of this probably motivated by a desire to get away from GPL to MIT.”</a>
+based on <a target="_blank" href="http://meta.ath0.com/2012/02/05/apples-great-gpl-purge/">these statistics</a>.</p>
+
+    <h3 id="macos-does-not-have-latest-zsh">macOS does not have latest Zsh</h3>
+
+    <p>PROTIP: The version of zsh from Apple is likely not the latest because Apple does not automatically update it (like modern browsers do).</p>
+  </li>
+  <li>
+    <p>The latest version of Zsh available is listed in the Zsh website’s News page at</p>
+
+    <p><a target="_blank" href="http://zsh.sourceforge.net/News/">http://zsh.sourceforge.net/News</a></p>
+
+    <p>At time of writing, it’s <strong>5.7.1</strong></p>
+
+    <p>PROTIP: Zshell has been around so long that its source code repository is still on Sourceforge&lt;/a&gt; since its initial release in 1990, at
+<a target="_blank" href="https://sourceforge.net/p/zsh/code/ci/master/tree/">
+https://sourceforge.net/p/zsh/code/ci/master/tree/</a> and
+<a target="_blank" href="https://sourceforge.net/projects/zsh/files/">https://sourceforge.net/projects/zsh/files</a></p>
+
+    <p><a name="InstallZsh"></a></p>
+
+    <h3 id="install-latest-z-shell-zsh-using-homebrew">Install latest Z Shell (zsh) using Homebrew</h3>
+
+    <p>PROTIP: Since one should <strong>not overwrite</strong> Apple’s stuff, upgrading requires installation of the latest version as if it did not already exist.</p>
+  </li>
+  <li>
+    <p>PROTIP: Z shell is also called <strong>zsh</strong> becuase of the Homebrew command to install it on macOS:<a target="_blank" href="https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH">https://github.com/robbyrussell/oh-my-zsh/wiki/themes</a></p>
+
+    <pre><strong>brew install zsh zsh-completions</strong></pre>
+
+    <p>NOTE: Ignore <a target="_blank" href="https://stackoverflow.com/questions/17648621/how-do-i-update-zsh-to-the-latest-version">advice</a> to add <code class="language-plaintext highlighter-rouge">-without-etcdir</code> to disable the reading of Zsh rc files in <tt>/etc</tt>, which is obsolete since 2018.</p>
+
+    <p>BTW, On an Ubuntu system the install command is a similar:<br></p>
+    <pre>sudo apt install zsh</pre>
+
+    <p>The response:</p>
+
+    <pre>==&gt; Installing dependencies for zsh: pcre
+==&gt; Installing zsh dependency: pcre
+==&gt; Downloading <a class="vglnk" href="https://homebrew.bintray.com/bottles/pcre-8.43.mojave.bottle.tar" rel="nofollow"><span>https</span><span>://</span><span>homebrew</span><span>.</span><span>bintray</span><span>.</span><span>com</span><span>/</span><span>bottles</span><span>/</span><span>pcre</span><span>-</span><span>8</span><span>.</span><span>43</span><span>.</span><span>mojave</span><span>.</span><span>bottle</span><span>.</span><span>tar</span></a>
+==&gt; Downloading from <a class="vglnk" href="https://akamai.bintray.com/08/08e7414a7641d1e184c936537ff67" rel="nofollow"><span>https</span><span>://</span><span>akamai</span><span>.</span><span>bintray</span><span>.</span><span>com</span><span>/</span><span>08</span><span>/</span><span>08e7414a7641d1e184c936537ff67</span></a>
+######################################################################## 100.0%
+==&gt; Pouring pcre-8.43.mojave.bottle.tar.gz
+🍺  /usr/local/Cellar/pcre/8.43: 204 files, 5.5MB
+==&gt; Installing zsh
+==&gt; Downloading <a class="vglnk" href="https://homebrew.bintray.com/bottles/zsh-5.7.1.mojave.bottle.tar" rel="nofollow"><span>https</span><span>://</span><span>homebrew</span><span>.</span><span>bintray</span><span>.</span><span>com</span><span>/</span><span>bottles</span><span>/</span><span>zsh</span><span>-</span><span>5</span><span>.</span><span>7</span><span>.</span><span>1</span><span>.</span><span>mojave</span><span>.</span><span>bottle</span><span>.</span><span>tar</span></a>
+==&gt; Downloading from <a class="vglnk" href="https://akamai.bintray.com/79/793d87f67e64a5e01dfdea890af21" rel="nofollow"><span>https</span><span>://</span><span>akamai</span><span>.</span><span>bintray</span><span>.</span><span>com</span><span>/</span><span>79</span><span>/</span><span>793d87f67e64a5e01dfdea890af21</span></a>
+######################################################################## 100.0%
+==&gt; Pouring zsh-5.7.1.mojave.bottle.tar.gz
+🍺  /usr/local/Cellar/zsh/5.7.1: 1,515 files, 13.3MB
+==&gt; Downloading <a class="vglnk" href="https://github.com/zsh-users/zsh-completions/archive/0.30.0.tar" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>zsh</span><span>-</span><span>users</span><span>/</span><span>zsh</span><span>-</span><span>completions</span><span>/</span><span>archive</span><span>/</span><span>0</span><span>.</span><span>30</span><span>.</span><span>0</span><span>.</span><span>tar</span></a>.
+==&gt; Downloading from <a class="vglnk" href="https://codeload.github.com/zsh-users/zsh-completions/tar.g" rel="nofollow"><span>https</span><span>://</span><span>codeload</span><span>.</span><span>github</span><span>.</span><span>com</span><span>/</span><span>zsh</span><span>-</span><span>users</span><span>/</span><span>zsh</span><span>-</span><span>completions</span><span>/</span><span>tar</span><span>.</span><span>g</span></a>
+######################################################################## 100.0%
+==&gt; Caveats
+To activate these completions, add the following to your .zshrc:
+&nbsp;
+  fpath=(/usr/local/share/zsh-completions $fpath)
+&nbsp;
+You may also need to force rebuild `zcompdump`:
+&nbsp;
+  rm -f ~/.zcompdump; compinit
+&nbsp;
+Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+to load these completions, you may need to run this:
+&nbsp;
+  chmod go-w '/usr/local/share'
+==&gt; Summary
+🍺  /usr/local/Cellar/zsh-completions/0.30.0: 133 files, 980.2KB, built in 8 seconds
+</pre>
+
+    <p>PROTIP: Notice that the “mojave” in the message above means that the installation needs to be repeated with each new version of Apple macOS.</p>
+
+    <p>PROTIP: Notice the “To activate these completions, add the following to your <a href="#zshrc">.zshrc</a>:”</p>
+  </li>
+  <li>
+    <p>Get information about what was installed:</p>
+
+    <pre><strong>brew info zsh</strong></pre>
+
+    <p>The response:</p>
+
+    <pre>zsh: stable 5.7.1 (bottled), HEAD
+UNIX shell (command interpreter)
+<a class="vglnk" href="https://www.zsh.org/" rel="nofollow"><span>https</span><span>://</span><span>www</span><span>.</span><span>zsh</span><span>.</span><span>org</span><span>/</span></a>
+/usr/local/Cellar/zsh/5.7.1 (1,515 files, 13.3MB) *
+  Poured from bottle on 2019-06-05 at 14:43:05
+From: <a class="vglnk" href="https://github.com/Homebrew/homebrew-core/blob/master/Formula/zsh.rb" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>Homebrew</span><span>/</span><span>homebrew</span><span>-</span><span>core</span><span>/</span><span>blob</span><span>/</span><span>master</span><span>/</span><span>Formula</span><span>/</span><span>zsh</span><span>.</span><span>rb</span></a>
+==&gt; Dependencies
+Required: ncurses ✔, pcre ✔
+==&gt; Options
+--HEAD
+ Install HEAD version
+==&gt; Analytics
+install: 42,894 (30 days), 131,013 (90 days), 641,092 (365 days)
+install_on_request: 41,019 (30 days), 124,257 (90 days), 587,940 (365 days)
+build_error: 0 (30 days)
+</pre>
+  </li>
+  <li>
+    <p>Confirm location of installation:</p>
+
+    <pre><strong>ls -la /usr/local/bin/zs*</strong></pre>
+
+    <p>The response:</p>
+
+    <pre>lrwxr-xr-x  1 wilsonmar  admin  27 Jun  5 14:43 /usr/local/bin/zsh -&gt; ../Cellar/zsh/5.7.1/bin/zsh
+lrwxr-xr-x  1 wilsonmar  admin  33 Jun  5 14:43 /usr/local/bin/zsh-5.7.1 -&gt; ../Cellar/zsh/5.7.1/bin/zsh-5.7.1
+</pre>
+
+    <p><a name="PromptsDifferent"></a></p>
+
+    <h3 id="prompt-settings-are-different">Prompt settings are different</h3>
+  </li>
+  <li>
+    <p>If you type in the command while in the Bash shell:</p>
+
+    <pre><strong>zsh</strong></pre>
+
+    <p>The response prompt can be a mess because zsh doesn’t understand prompt specifiers for Bash. For example, my <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> file defines a <strong>PS1</strong> system environment variable with this specification:</p>
+
+    <pre>\n  \w\[\033[33m\] $(parse_git_branch)\[\033[00m\]\n$</pre>
+
+    <p><code class="language-plaintext highlighter-rouge">\n  </code> add a blank line and indents. For easier readability.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">\n</code> positions the cursor always on the same spot at the left of the screen so I don’t have to search for it.</p>
+
+    <p>PROTIP: Zsh spits out the PS1 variable when it can’t find the <code class="language-plaintext highlighter-rouge">~/.zshrc</code> that it uses (instead of <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> to define prompts, paths, etc.</p>
+
+    <h3 id="emulate">Emulate</h3>
+  </li>
+  <li>
+    <p>zsh has a builtin command to emulate different shells:</p>
+
+    <pre>emulate bash</pre>
+  </li>
+  <li>Perform commands.</li>
+  <li>
+    <p>Restore:</p>
+
+    <pre>emulate -R zsh</pre>
+
+    <p><code class="language-plaintext highlighter-rouge">-R</code> restores all the options to their default values for that shell.</p>
+
+    <p><a name="ExecZsh"></a></p>
+
+    <h3 id="execute-zsh-temporarily">Execute zsh temporarily</h3>
+  </li>
+  <li>
+    <p>To Switch to zsh (replace your current shell with a new shell):</p>
+
+    <pre>exec zsh</pre>
+
+    <ul>
+      <li>Command <code class="language-plaintext highlighter-rouge">bye</code> now exits zsh just as <code class="language-plaintext highlighter-rouge">exit</code> in bash.
+<br><br></li>
+    </ul>
+
+    <p>Similarly, to switch to Bash from inside Zsh:</p>
+
+    <pre><strong>exec bash -l</strong></pre>
+
+    <p><code class="language-plaintext highlighter-rouge">-l</code> (for <code class="language-plaintext highlighter-rouge">--login</code>) avoids a source reset.</p>
+
+    <p>zsh always read , <code class="language-plaintext highlighter-rouge">.zshrc</code> when starting an interactive shell, whether it’s a login one or not.</p>
+  </li>
+</ol>
+
+<p><a name="DefaultZsh"></a></p>
+
+<h3 id="default-to-zsh">Default to Zsh</h3>
+
+<ol>
+  <li>
+    <p>To flip back to Bash shell:</p>
+
+    <pre><strong>sh</strong></pre>
+
+    <p>PROTIP: Control the look of the prompt in Bash by setting the PROMPT_COMMAND variable to one or more of the special characters will customize it for you.</p>
+  </li>
+  <li>
+    <p>To Switch to bash (replace your current shell with a new shell):</p>
+
+    <pre>exec zsh</pre>
+
+    <p>Similarly, to switch to Bash from inside Zsh:</p>
+
+    <pre><strong>exec bash -l</strong>
+
+`-l` (for `--login`) avoids a source reset.
+
+</pre>
+  </li>
+  <li>
+    <p>Identify where shells are installed:</p>
+
+    <pre><strong>which zsh</strong></pre>
+
+    <p>You should see:</p>
+
+    <pre>/usr/local/bin/zsh</pre>
+
+    <p>Alternately,</p>
+
+    <pre><strong>which bash</strong></pre>
+
+    <p>You should see:</p>
+
+    <pre>/bin/bash</pre>
+  </li>
+  <li>
+    <p>In Terminal, select Preferences &gt; General &gt; Shells open to change to:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">/usr/local/bin/zsh</code></p>
+  </li>
+  <li>
+    <p>Close and start your Terminals for changes to take.</p>
+
+    <h3 id="chsh-to-make-zsh-the-default">chsh to make zsh the default</h3>
+
+    <p>PROTIP: <a target="_blank" href="https://www.robertcooper.me/elegant-development-experience-with-zsh-and-hyper-terminal">Some tutorials</a> recommend using a command such as “chsh -s /bin/zsh”. But my recommendation is instead of a hard-coded path, have the command look up where zsh is located.
+This is because there can be multiple versions of zsh around.</p>
+  </li>
+  <li>
+    <p>Use the <code class="language-plaintext highlighter-rouge">chsh</code> command:</p>
+
+    <pre><strong>chsh -s $(which zsh)</strong></pre>
+
+    <p>You would be prompted “Password for …”, so give it up.</p>
+
+    <p>Alternately, there is an approach which directly updates the Mac’s user db, without need to edit /etc/shells, is the <code class="language-plaintext highlighter-rouge">dscl</code> (Directory Services Command Utility) also used to create new users, reset password, etc. from the command line rather than the GUI. (see the <a target="_blank" href="https://ss64.com/osx/dscl.html">dscl man page</a>).</p>
+  </li>
+  <li>
+    <p>Verify the system variable that defines the shell your system defined:</p>
+
+    <pre><strong>echo $SHELL</strong></pre>
+
+    <p>If you have Z shell, it would be:</p>
+
+    <pre>/usr/bin/zsh</pre>
+
+    <p>PROTIP: The concern is making Z shell the default, not whether to install it.</p>
+
+    <h3 id="verify-the-switch">Verify the switch</h3>
+  </li>
+  <li>
+    <p>Verify the <strong>process</strong> running:</p>
+
+    <pre><strong>echo $0</strong></pre>
+
+    <p>If you have Bash, it would return:</p>
+
+    <pre>bash</pre>
+
+    <p>If you have Z shell, it would return:</p>
+
+    <pre>zsh</pre>
+  </li>
+</ol>
+
+<p><a name="ZshAdvantages"></a></p>
+
+<h2 id="why-z-shell-is-better-than-bash">Why Z shell is better than Bash</h2>
+
+<p>Here is a small list of advantages to using zsh.</p>
+
+<ul>
+  <li>
+    <p>Automatic cd: Just type the name of the directory anywhere in the path (you don’t need to specify the entire path)</p>
+  </li>
+  <li>
+    <p>Recursive path expansion: For example “/u/lo/b” expands to “/usr/local/bin”</p>
+  </li>
+  <li>
+    <p>Spelling correction and approximate completion: If you make a minor mistake typing a directory name, ZSH fixes it for you</p>
+  </li>
+  <li>
+    <p>Z shell is case insensitive.</p>
+  </li>
+  <li>
+    <p>Floating point support (Bash does not have)</p>
+  </li>
+  <li>
+    <p>Hash data structures support (requires upgrade to Bash 4)</p>
+  </li>
+  <li>
+    <p>File globbing in Z uses character patterns that are similar, but not identical to those used in regexps. Example: “He said his name was [KC]arl” to (express ambiguity). See <a target="_blank" href="https://www.linuxnix.com/10-file-globbing-examples-linux-unix/">https://www.linuxnix.com/10-file-globbing-examples-linux-unix</a></p>
+  </li>
+  <li>
+    <p>To display all available options for a command, along with a short description, type the command followed by -, then hit tab. Tab through to select the option shown.</p>
+  </li>
+</ul>
+
+<p>Zsh comes with commands that need to be installed in Bash:<a target="_blank" href="https://www.howtogeek.com/362409/what-is-zsh-and-why-should-you-use-it-instead-of-bash/">*</a>:</p>
+
+<ul>
+  <li>
+    <p>Z shell comes with Git client and Git completions (see <a target="_blank" href="http://eseth.org/2010/git-in-zsh.html#show-stashed-changes">http://eseth.org/2010/git-in-zsh.html#show-stashed-changes</a>)</p>
+  </li>
+  <li>
+    <p>Startup/shutdown scripts <code class="language-plaintext highlighter-rouge">zshenv</code>, <code class="language-plaintext highlighter-rouge">zprofile</code>, <code class="language-plaintext highlighter-rouge">zshrc</code>, <code class="language-plaintext highlighter-rouge">zlogin</code>, and <code class="language-plaintext highlighter-rouge">zlogout</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">zcalc</code> is a command-line calculator for doing quick calculations without leaving the terminal. (Load it with autoload -Uz zcalc and run with zcalc)</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">zparseopts</code> parses complex options (arguments) provided to shell scripts</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">zmv</code> does massive file/directory renames. To append ‘.txt’ to every file name run:</p>
+  </li>
+</ul>
+
+<pre><strong>zmv –C '(*)(#q.)' '$1.txt'</strong></pre>
+
+<ul>
+  <li>Z comes with an auto-update tool that makes it easier to keep installed plug-ins and themes updated.</li>
+</ul>
+
+<p>See a list of Z Shell built-in commands in the Zsh Manual at:</p>
+
+<p><a target="_blank" href="http://zsh.sourceforge.net/Doc/Release/Shell-Builtin-Commands.html">http://zsh.sourceforge.net/Doc/Release/Shell-Builtin-Commands.html</a></p>
+
+<p>More opinions about zsh:</p>
+
+<ul>
+  <li><a target="_blank" href="https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/">https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156</a> from 15 November 2018</li>
+  <li><a target="_blank" href="http://zpalexander.com/switching-to-zsh/">http://zpalexander.com/switching-to-zsh</a></li>
+  <li><a target="_blank" href="https://www.chenhuijing.com/blog/bash-to-zsh/#%F0%9F%91%BE">https://www.chenhuijing.com/blog/bash-to-zsh/#%F0%9F%91%BE</a></li>
+</ul>
+
+<p><a name="BashismsBreaksZsh"></a></p>
+
+<h2 id="script-bashisms-break-in-zsh">Script Bashisms break in Zsh</h2>
+
+<p>PROTIP: Unlike Microsoft Windows which selects the program to execute a file based on the file name extension, Linux looks into the first line within the file. That line which is called a “Shebang”. Thus, shell scripts do not require a file extension, but many add one anyway, such as <code class="language-plaintext highlighter-rouge">thisfile.sh</code>.</p>
+
+<ol>
+  <li>
+    <p>In a script, if you use <a href="#Bashisms">Bashisms</a>, have this she-bang:</p>
+
+    <pre><strong>#!/usr/bin/env bash</strong></pre>
+
+    <p>By contrast, the recommended way to call python is:</p>
+
+    <pre>#!/usr/bin/env python</pre>
+
+    <p>PROTIP: The use of <code class="language-plaintext highlighter-rouge">env</code> takes a bit longer because it goes out and finds the program rather than specifying the program “bash” in a certain path:</p>
+
+    <pre>#!/usr/bin/bash</pre>
+
+    <p>The problem with the above location is that it is not available in other platforms and thus makes the script non-portable.</p>
+
+    <p>Alternately, to ensure your script runs on the widest variety of systems:</p>
+
+    <pre>#!/bin/sh</pre>
+
+    <p>This is because the <code class="language-plaintext highlighter-rouge">sh</code> interpreter is POSIX compliant. Bash is not.</p>
+
+    <p>BTW In Ubuntu, the default shell was changed from bash (the GNU Bourne-Again Shell), then to /bin/sh, then to <strong>dash</strong> (the Debian Almquist Shell) in Ubuntu 6.10. That’s back when actual Bourne shell and Korn shell weren’t open-source at that time. <a target="_blank" href="https://wiki.ubuntu.com/DashAsBinSh">*</a> Dash is faster to start than bash.</p>
+
+    <p>There is also a <a target="_blank" href="http://packages.debian.org/squeeze/posh">Debian Posh</a> shell, <a target="_blank" href="http://www.busybox.net/">Busybox</a> shell, etc.</p>
+
+    <p>There are also other distributions, such as Cygwin (emulator in Windows), MinGW(used in git bash), CentOS, Amazon Linux, Red Hat, Debian, etc.</p>
+
+    <p>Each flavor of shell has a different algorithm for deciding which startup script to run.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>The big issue of concern is compatibility with other Linux distributions.
+A further shift to MacOS’s FreeBSD roots would add “cognitive overload”.
+because the vast majority of other CLI ecosystems remain on Bash.
+Constantly thinking about whether one needs to use Z shell or Bash shell disrupts the “muscle memory” of developers, 
+and thus reduce productivity.</p>
+</blockquote>
+
+<p>Cloud shells on cloud vendors use Bash</p>
+<ul>
+  <li>Azure Cloud Shell <a class="vglnk" href="https://shell.azure.com/" rel="nofollow"><span>https</span><span>://</span><span>shell</span><span>.</span><span>azure</span><span>.</span><span>com</span><span>/</span></a></li>
+  <li>Google</li>
+  <li>Amazon</li>
+  <li>etc.</li>
+</ul>
+
+<p><a target="_blank" href="https://www.howtogeek.com/258518/how-to-use-zsh-or-another-shell-in-windows-10/">
+One can configure Windows 10 to use Z shell</a> but many use <strong>git bash</strong> which remains in Bash.</p>
+
+<p>Azure’s <a target="_blank" href="https://docs.microsoft.com/en-us/azure/cloud-shell/features">list of its Cloud Shell features</a> includes zsh.</p>
+
+<blockquote>
+  <p>Some find Apple’s move exciting because Apple is leading the rest of the tech world into the future,
+like Apple did about removing 3.5 mm headphone jacks on iPhone X.</p>
+</blockquote>
+
+<p>So the transition will be painful, as the dream of one shell script that runs across operating systems is now dashed.</p>
+
+<hr>
+
+<p><a name="zshrcPlugins"></a></p>
+
+<h2 id="z-shell-plug-ins">Z Shell plug-ins</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">~/.zshrc</code> file (<code class="language-plaintext highlighter-rouge">~</code> meaning in your $HOME directory) is one file that enables and disables plugins.
+For example:</p>
+
+<pre>plugins=(
+       osx
+       iterm2
+       brew
+       git
+       python
+       pip
+       colored-man 
+       colorize
+       zsh-autosuggestions
+       yarn
+       web-search
+       jsontools
+       macports
+       node
+       osx
+       sudo
+       thor
+       docker
+       zsh-syntax-highlighting
+       mouse
+   )
+   </pre>
+
+<p>WARNING: Adding plugins cause your shell startup time to increase.</p>
+
+<p>The sequence is important. “prompt” must come last. history-substring-search must come before it, and syntax-highlighting must come before that.<a target="_blank" href="http://joshsymonds.com/blog/2014/06/12/shell-awesomeness-with-prezto/">*</a></p>
+
+<h2 id="z-shell-prompts">Z shell Prompts</h2>
+
+<p>Zsh has several built-in advanced prompts.<a target="_blank" href="http://www.linuxfromscratch.org/blfs/downloads/7.9/BLFS-BOOK-7.9-nochunks.html#zsh">*</a></p>
+
+<ol>
+  <li>
+    <p>Start Zsh advanced prompt support with</p>
+
+    <p><code class="language-plaintext highlighter-rouge">autoload -U promptinit</code>, then <code class="language-plaintext highlighter-rouge">promptinit</code></p>
+  </li>
+  <li>
+    <p>List available prompt names with <code class="language-plaintext highlighter-rouge">prompt -l</code>.</p>
+  </li>
+  <li>Select a particular one with prompt <em>prompt-name</em>.</li>
+  <li>
+    <p>Display all available prompts with <code class="language-plaintext highlighter-rouge">prompt -p</code>.</p>
+  </li>
+  <li>Except for the list and display commands above, insert the other ones in <code class="language-plaintext highlighter-rouge">~/.zshrc</code> to be automatically executed at shell start, with the prompt you chose.</li>
+</ol>
+
+<h2 id="z-shell-themes">Z shell themes</h2>
+
+<ol>
+  <li>
+    <p>The powerlevel9k theme adds a right-aligned info box, integration with git and command history, incredible customization, and wraps it all up in a slick interface based on the powerline plugin for vim.</p>
+
+    <pre>git clone <a class="vglnk" href="https://github.com/bhilburn/powerlevel9k.git" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>bhilburn</span><span>/</span><span>powerlevel9k</span><span>.</span><span>git</span></a> \
+~/.oh-my-zsh/custom/themes/powerlevel9k</pre>
+  </li>
+  <li>
+    <p>Enable it in .zshrc:</p>
+
+    <pre>ZSH_THEME="powerlevel9k/powerlevel9k"</pre>
+  </li>
+  <li>
+    <p>Customize the default prompt by defining POWERLEVEL9K_LEFT_PROMPT_ELEMENTS in your .zshrc. 
+For example, to define a minimal prompt:</p>
+
+    <pre>POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vcs dir rbenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs status load)
+</pre>
+  </li>
+  <li>
+    <p>Read documentation at <a class="vglnk" href="https://github.com/bhilburn/powerlevel9k#customizing-prompt-segments" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>bhilburn</span><span>/</span><span>powerlevel9k</span><span>#</span><span>customizing</span><span>-</span><span>prompt</span><span>-</span><span>segments</span></a></p>
+  </li>
+</ol>
+
+<p>Based on <a class="vglnk" href="https://www.howtogeek.com/362409/what-is-zsh-and-why-should-you-use-it-instead-of-bash/" rel="nofollow"><span>https</span><span>://</span><span>www</span><span>.</span><span>howtogeek</span><span>.</span><span>com</span><span>/</span><span>362409</span><span>/</span><span>what</span><span>-</span><span>is</span><span>-</span><span>zsh</span><span>-</span><span>and</span><span>-</span><span>why</span><span>-</span><span>should</span><span>-</span><span>you</span><span>-</span><span>use</span><span>-</span><span>it</span><span>-</span><span>instead</span><span>-</span><span>of</span><span>-</span><span>bash</span><span>/</span></a></p>
+
+<p>Other themes for Z shell:</p>
+
+<ul>
+  <li>
+    <p><a class="vglnk" href="https://github.com/sobolevn/sobole-zsh-theme" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>sobolevn</span><span>/</span><span>sobole</span><span>-</span><span>zsh</span><span>-</span><span>theme</span></a></p>
+  </li>
+  <li>
+    <p><a class="vglnk" href="http://sobolevn.me/sobole-zsh-theme/" rel="nofollow"><span>http</span><span>://</span><span>sobolevn</span><span>.</span><span>me</span><span>/</span><span>sobole</span><span>-</span><span>zsh</span><span>-</span><span>theme</span><span>/</span></a></p>
+  </li>
+</ul>
+
+<p><a name="Bashisms"></a></p>
+
+<h2 id="bashisms-against-portability">Bashisms against portability</h2>
+
+<p>“Bashisms” are shell syntax which is only understood by the bash shell and not other shells.</p>
+
+<p>To enable a shell script to run on more platforms, convert use of “bashisms” to POSIX:
+<a class="vglnk" href="https://en.wikipedia.org/wiki/POSIX#POSIX.2" rel="nofollow"><span>https</span><span>://</span><span>en</span><span>.</span><span>wikipedia</span><span>.</span><span>org</span><span>/</span><span>wiki</span><span>/</span><span>POSIX</span><span>#</span><span>POSIX</span><span>.</span><span>2</span></a></p>
+
+<ol>
+  <li>
+    <p>Replace <code class="language-plaintext highlighter-rouge">function funcname()</code> with <code class="language-plaintext highlighter-rouge">funcname()</code></p>
+  </li>
+  <li>
+    <p>TODO: To verify, run linter shellcheck.</p>
+
+    <p>NOTE: The Ubuntu <a target="_blank" href="http://manpages.ubuntu.com/manpages/bionic/man1/checkbashisms.1.html">checkbashisms Perl program to identify bashisms in a script</a>.</p>
+
+    <pre><strong>checkbashisms</strong></pre>
+
+    <p>On Debian, it’s shipped as part of the <a target="_blank" href="http://packages.debian.org/squeeze/devscripts">package maintainer tools</a>.</p>
+  </li>
+  <li>
+    <p>If you use the Atom text editor, install the <a target="_blank" href="https://atom.io/packages/linter-checkbashisms">plug-in for checkbashisms</a>.</p>
+  </li>
+  <li>
+    <p>Configure a Git pre-commit hook to run <a class="vglnk" href="https://tracker.debian.org/pkg/devscripts" rel="nofollow"><span>https</span><span>://</span><span>tracker</span><span>.</span><span>debian</span><span>.</span><span>org</span><span>/</span><span>pkg</span><span>/</span><span>devscripts</span></a></p>
+
+    <p>Some of Bash’s scripting features are derived from the ksh and predecessor shells rather than those defined by POSIX standard defined by the IEEE at <a target="_blank" href="http://pubs.opengroup.org/onlinepubs/009695399/nfindex.html">http://pubs.opengroup.org/onlinepubs/009695399/nfindex.html</a>. The shell standard 1003.1-2004 is <a target="_blank" href="http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html">http://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html</a></p>
+  </li>
+  <li>
+    <p>Set a script to disable non-POSIX usage to ensure portability, add:</p>
+
+    <pre>set -o posix&lt;/strong&gt; 
+
+</pre>
+  </li>
+</ol>
+<p>Discussion about Bashisms are at:</p>
+
+<ul>
+  <li>
+    <p><a target="_blank" href="https://mywiki.wooledge.org/Bashism">https://mywiki.wooledge.org/Bashism</a></p>
+  </li>
+  <li>
+    <p><a class="vglnk" href="http://www.freeos.com/guides/lsst/" rel="nofollow"><span>http</span><span>://</span><span>www</span><span>.</span><span>freeos</span><span>.</span><span>com</span><span>/</span><span>guides</span><span>/</span><span>lsst</span><span>/</span></a></p>
+  </li>
+  <li>
+    <p><a target="_blank" href="https://unix.stackexchange.com/questions/9997/resources-for-portable-shell-programming">Resources for portable shell programming</a></p>
+  </li>
+  <li>
+    <p><a target="_blank" href="https://www.in-ulm.de/~mascheck/various/">Sven Mascheck’s shell portability pages</a></p>
+  </li>
+  <li>
+    <p><a class="vglnk" href="https://news.ycombinator.com/item?id=8777705" rel="nofollow"><span>https</span><span>://</span><span>news</span><span>.</span><span>ycombinator</span><span>.</span><span>com</span><span>/</span><span>item</span><span>?</span><span>id</span><span>=</span><span>8777705</span></a></p>
+  </li>
+</ul>
+
+<h4 id="random">Random</h4>
+
+<ol>
+  <li>
+    <p>Rather than using the magic variable $RANDOM, use this, which returns 20816:</p>
+
+    <pre>random=`hexdump -n 2 -e '/2 "%u"' /dev/urandom`</pre>
+  </li>
+</ol>
+
+<ul>
+  <li>Indexes in an array within zsh begin with 1 vs. with 0 in bash and sh.</li>
+</ul>
+
+<p><a target="_blank" href="https://github.com/RainbowHackerHorse/vzvol">vzvol</a> is a great example of modular shell code to ensure extensibility and cleanliness of code. It sources functions from files the same way you would import functions and libraries in C.</p>
+
+<h2 id="plugins">Plugins</h2>
+
+<p>Z shell supports plugins and themes.</p>
+
+<p>There are mutually exclusive alternatives:</p>
+
+<ul>
+  <li>
+    <p>Prezto (at <a class="vglnk" href="https://github.com/sorin-ionescu/prezto" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>sorin</span><span>-</span><span>ionescu</span><span>/</span><span>prezto</span></a>) is a configuration framework for Zsh.</p>
+  </li>
+  <li>
+    <p><a target="_blank" href="https://github.com/zsh-users/antigen">Antigen</a> is a  manager for Zsh plugins (bundles). Antigen lets you switch the prompt theme with a command (for the session) such as:</p>
+
+    <pre>antigen theme candy</pre>
+  </li>
+  <li>
+    <p>Oh My Zsh is the most commonly known.</p>
+  </li>
+</ul>
+
+<h3 id="oh-my-zsh">Oh My Zsh</h3>
+
+<p>PROTIP:  A user community website called <a target="_blank" href="https://ohmyz.sh/">“Oh My Zsh” at https://ohmyz.sh</a> (<a target="_blank" href="https://twitter.com/ohmyzsh">@ohmyzsh</a>) collects third-party plug-ins and themes for the Z shell. As of 2018, their <a target="_blank" href="https://github.com/robbyrussell/oh-my-zsh">GitHub repository</a> has over 1,300 contributors, 200+ plug-ins, and over 140 themes (of varying quality).</p>
+
+<p>See <a target="_blank" href="https://support.apple.com/en-us/HT208050">https://support.apple.com/en-us/HT208050</a> and <a target="_blank" href="https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH">https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH</a></p>
+
+<ol>
+  <li>
+    <p>Use this shell command to install:</p>
+
+    <pre>sh -c "$(curl -fsSL <a class="vglnk" href="https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh" rel="nofollow"><span>https</span><span>://</span><span>raw</span><span>.</span><span>github</span><span>.</span><span>com</span><span>/</span><span>robbyrussell</span><span>/</span><span>oh</span><span>-</span><span>my</span><span>-</span><span>zsh</span><span>/</span><span>master</span><span>/</span><span>tools</span><span>/</span><span>install</span><span>.</span><span>sh</span></a>)"</pre>
+
+    <p>The initial response:</p>
+
+    <pre>Cloning Oh My Zsh...
+Cloning into '/Users/wilsonmar/.oh-my-zsh'...
+remote: Enumerating objects: 1040, done.
+remote: Counting objects: 100% (1040/1040), done.
+remote: Compressing objects: 100% (957/957), done.
+remote: Total 1040 (delta 23), reused 852 (delta 20), pack-reused 0
+Receiving objects: 100% (1040/1040), 691.56 KiB | 2.11 MiB/s, done.
+Resolving deltas: 100% (23/23), done.
+&nbsp;
+Looking for an existing zsh config...
+Found ~/.zshrc. Backing up to /Users/wilsonmar/.zshrc.pre-oh-my-zsh
+Using the Oh My Zsh template file and adding it to ~/.zshrc.
+</pre>
+  </li>
+  <li>
+    <p>When prompted with this, type “n”:</p>
+
+    <pre>Time to change your default shell to zsh:
+Do you want to change your default shell to zsh? [Y/n] n
+</pre>
+
+    <p>The rest of the response:</p>
+
+    <pre>Shell change skipped.
+      __                                     __
+  ____  / /_     ____ ___  __  __   ____  _____/ /_
+ / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \
+/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / /
+\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/
+                     /____/                       ....is now installed!
+&nbsp;
+Please look over the ~/.zshrc file to select plugins, themes, and options.
+&nbsp;
+p.s. Follow us on <a class="vglnk" href="https://twitter.com/ohmyzsh" rel="nofollow"><span>https</span><span>://</span><span>twitter</span><span>.</span><span>com</span><span>/</span><span>ohmyzsh</span></a>
+&nbsp;
+p.p.s. Get stickers, shirts, and coffee mugs at <a class="vglnk" href="https://shop.planetargon.com/collections/oh-my-zsh" rel="nofollow"><span>https</span><span>://</span><span>shop</span><span>.</span><span>planetargon</span><span>.</span><span>com</span><span>/</span><span>collections</span><span>/</span><span>oh</span><span>-</span><span>my</span><span>-</span><span>zsh</span></a>
+</pre>
+  </li>
+</ol>
+
+<p><a name="SetZshrc"></a></p>
+
+<h3 id="set-zshrc-start-up-commands">Set .zshrc start-up commands</h3>
+
+<p>Installing oh my zsh results in creation or update of file <code class="language-plaintext highlighter-rouge">~/.zshrc</code>, with suggested settings commented out. Other examples are</p>
+
+<ul>
+  <li><a target="_blank" href="https://matt.blissett.me.uk/linux/zsh/zshrc">https://matt.blissett.me.uk/linux/zsh/zshrc</a>
+   <br><br></li>
+</ul>
+
+<p>PROTIP: Static values need to be defined to specify PATH, LANG, LC_ALL, PS1, PS2, PS4, etc. <a target="_blank" href="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_05_03">shell variables</a>.</p>
+
+<p>When the operating system starts, it looks for a file with a specific name to execute. Debian-family distros execute <code class="language-plaintext highlighter-rouge">.profile</code>, and ignores the <code class="language-plaintext highlighter-rouge">.bash_profile</code> that MacOS and RedHat derivatives (CentOS) execute.</p>
+
+<p>The sh shell and Debian-family distros look for a file named <code class="language-plaintext highlighter-rouge">.profile</code> to execute for user login. The bash shell, being generally backwards-compatible with /bin/sh, reads <code class="language-plaintext highlighter-rouge">.profile</code> if one exists.</p>
+
+<p>NOTE: There is a differentiation between interactive login.
+   Each terminal window is a different process and require another password to login.</p>
+
+<ol>
+  <li>
+    <p>PROTIP: Some installers, such as the rvm (Ruby) installer, adds to the .profile file. So edit the .profile file add at the top of the a command to notify that it is being executed. Such as:</p>
+
+    <pre>printf "&gt;&gt;&gt; ~/.profile being processed ..."</pre>
+  </li>
+  <li>
+    <p>Open the Terminal program.</p>
+
+    <p>This causes an interactive shell to be invoked.</p>
+
+    <p>You are required to provide your password because it <strong>logs you in as a user</strong>.</p>
+
+    <p>The zsh shell always reads file <code class="language-plaintext highlighter-rouge">.zshrc</code> for an interactive shell, whether it’s a login one or not.</p>
+  </li>
+  <li>
+    <p>Switch to a text editor to edit in your Home folder file <code class="language-plaintext highlighter-rouge">~/.zshrc</code> :</p>
+
+    <p>This is from <a target="_blank" href="https://github.com/robbyrussell/oh-my-zsh/blob/master/templates/zshrc.zsh-template">here on GitHub</a>. Robby Russell is the original developer of the project.</p>
+
+    <pre>\# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+&nbsp;
+\# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+&nbsp;
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See <a class="vglnk" href="https://github.com/robbyrussell/oh-my-zsh/wiki/Themes" rel="nofollow"><span>https</span><span>://</span><span>github</span><span>.</span><span>com</span><span>/</span><span>robbyrussell</span><span>/</span><span>oh</span><span>-</span><span>my</span><span>-</span><span>zsh</span><span>/</span><span>wiki</span><span>/</span><span>Themes</span></a>
+ZSH_THEME="robbyrussell"
+&nbsp;
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+&nbsp;
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+&nbsp;
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+&nbsp;
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+&nbsp;
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+&nbsp;
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+&nbsp;
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
+&nbsp;
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+&nbsp;
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+&nbsp;
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+&nbsp;
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+&nbsp;
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+&nbsp;
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+&nbsp;
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+&nbsp;
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+&nbsp;
+source $ZSH/oh-my-zsh.sh
+&nbsp;
+# User configuration
+&nbsp;
+# export MANPATH="/usr/local/man:$MANPATH"
+&nbsp;
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+&nbsp;
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+&nbsp;
+# Compilation flags
+export ARCHFLAGS="-arch x86_64"
+&nbsp;
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+alias zshconfig="mate ~/.zshrc"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+</pre>
+
+    <p><code class="language-plaintext highlighter-rouge">mate</code> invokes the TextMate editor.</p>
+  </li>
+  <li>
+    <p>Remove the <code class="language-plaintext highlighter-rouge">#</code> to activate lines.</p>
+
+    <pre># Per Homebrew zsh Caveat:
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# This can also be in a ~/.zprofile :
+export PS1="\n  %10F%m%f:%11F%1~%f \$ \n"
+</pre>
+
+    <h3 id="source-aliases-for-compatibility">Source aliases for compatibility</h3>
+  </li>
+  <li>
+    <p>PROTIP: So that you can switch between zsh, bash, sh, put settings that are common among them into a separate file and have each script invoke the file.</p>
+
+    <pre>source aliases.sh</pre>
+  </li>
+  <li>
+    <p>Save the files in GitHub for version control.</p>
+  </li>
+  <li>
+    <p>Files in the $HOME folder are backed up.</p>
+  </li>
+</ol>
+
+<p><a name="DefaultDash"></a></p>
+
+<h2 id="change-default-shell-back-to-bash">Change default shell back to bash</h2>
+
+<ol>
+  <li>
+    <p>Switch back the default to Bash:</p>
+
+    <pre><strong>chsh -s $(which bash)</strong></pre>
+
+    <p>You should see the <a href="#Which">status response above</a>.</p>
+
+    <pre>/usr/local/bin/zsh</pre>
+  </li>
+</ol>
+
+<p><a name="AlternativeShell"></a></p>
+
+<h2 id="why-not-fish">Why not Fish?</h2>
+
+<p>Why didn’t Apple go further with alternative FOSS shell Fish (Friendly Interactive SHell)?
+Information about it:</p>
+
+<ul>
+  <li><a target="_blank" href="http://fishshell.com/">http://fishshell.com</a> is its home page.</li>
+  <li><a target="_blank" href="https://en.wikipedia.org/wiki/Friendly_interactive_shell">Wikipedia on “Friendly_interactive_shell”</a></li>
+  <li><a target="_blank" href="https://spin.atomicobject.com/2017/05/25/fish-shell-overview/">Fish Shell Overview</a>
+   <br><br></li>
+</ul>
+
+<p><a name="PythonAlternative"></a></p>
+
+<h2 id="why-not-jump-temporarily-to-python">Why not jump temporarily to Python?</h2>
+
+<p>There is a rising call for coding Python rather than shell code.
+Python code is easier to read and maintain, runs a little faster, and can have a proper unit test suite.
+<a target="_blank" href="https://medium.com/capital-one-tech/bashing-the-bash-replacing-shell-scripts-with-python-d8d201bc0989">This article</a> argues the Python is more cross-platform.</p>
+
+<p>Examples of common OS-level actions:</p>
+
+<ul>
+  <li>parsing arguments provided when called</li>
+  <li>functions</li>
+  <li><a target="_blank" href="https://github.com/ninjaaron/replacing-bash-scripting-with-python#getting-the-time">Getting the Time</a></li>
+  <li>parameters</li>
+  <li>Reading configuration files</li>
+  <li><a target="_blank" href="https://github.com/ninjaaron/replacing-bash-scripting-with-python#downloading-web-pages-and-files">Downloading Web Pages and Files</a></li>
+  <li>Replace in line - <a class="vglnk" href="https://stackoverflow.com/questions/10507230/insert-line-at-middle-of-file-with-python" rel="nofollow"><span>https</span><span>://</span><span>stackoverflow</span><span>.</span><span>com</span><span>/</span><span>questions</span><span>/</span><span>10507230</span><span>/</span><span>insert</span><span>-</span><span>line</span><span>-</span><span>at</span><span>-</span><span>middle</span><span>-</span><span>of</span><span>-</span><span>file</span><span>-</span><span>with</span><span>-</span><span>python</span></a></li>
+</ul>
+
+<p>sed ‘s/fields/fields\nNew Inserted Line/’ file.txt</p>
+
+<ul>
+  <li>Killing (and creating) processes</li>
+  <li>subshells <code class="language-plaintext highlighter-rouge">$()</code></li>
+  <li>Creating (and deleting) directories</li>
+  <li>Running applications</li>
+  <li>Doing date arithmetic</li>
+  <li>Arrays</li>
+  <li>symlinking files</li>
+  <li>Managing files
+   <br><br></li>
+</ul>
+
+<p><a target="_blank" href="https://github.com/ninjaaron/replacing-bash-scripting-with-python">https://github.com/ninjaaron/replacing-bash-scripting-with-python</a></p>
+
+<h2 id="video-tutorials">Video Tutorials</h2>
+
+<ul>
+  <li>
+    <p><a target="_blank" href="https://commandlinepoweruser.com/">https://commandlinepoweruser.com</a> by Wes Bos (<a target="_blank" href="https://twitter.com/wesbos">@wesbos</a>) present a free yet thorough video course on Zsh.</p>
+  </li>
+  <li>
+    <p><a target="_blank" href="https://app.linuxacademy.com/hands-on-labs/c3b7cd51-ba36-4bdb-b815-0ea8b444a41f">Accessing and Using the Azure Cloud Shell</a> hands-on lab on Linux Academy</p>
+  </li>
+  <li>
+    <p><a target="_blank" href="https://linuxacademy.com/cp/modules/view/id/72">
+The System Administrator’s Guide to Bash Scripting</a> [7:28:37] video course</p>
+  </li>
+</ul>
+</div>
