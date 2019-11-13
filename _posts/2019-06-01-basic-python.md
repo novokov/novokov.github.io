@@ -1,10 +1,7 @@
 ---
 title: Основы Python 3
 date: 2019-06-01 
-categories:
-  - web-analytics
-tags:
-  - in process
+categories: Python
 ---
 
 Конспект курса.  <b><i>Не дописан блок 2, блок 6+. Дописать про созалние словаря</i></b>

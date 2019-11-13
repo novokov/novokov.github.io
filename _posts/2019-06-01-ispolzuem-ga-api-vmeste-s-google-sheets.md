@@ -1,12 +1,8 @@
 ---
 title: Как юзать ga api вместе с google sheets
 categories:
-  - analytics
-tags:
-  - google analytics
-  - api
-  - code
-  - in process
+  - uncategorized
+  - python
 ---
 
 Интересные гайды:
