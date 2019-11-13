@@ -1,6 +1,6 @@
 ---
 layout: default
-title: category
+title: Categories
 ---
 
 {% for post in site.categories.django %}
