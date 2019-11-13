@@ -3,7 +3,9 @@ layout: default
 title: category
 ---
 
-{% for post in site.posts limit:5 %}
+{% for post in site.categories.django %}
+	
+	{{ post.title }}<br><hr>
 
 {% endfor %}
 
