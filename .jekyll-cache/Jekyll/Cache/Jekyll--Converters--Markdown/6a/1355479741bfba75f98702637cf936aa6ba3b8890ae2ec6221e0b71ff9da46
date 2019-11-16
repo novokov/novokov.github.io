@@ -1,0 +1,104 @@
+I"�<p>после создания проекта внутри появятся файлы.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>manage.py - консольная утилита
+project-name - папка с названием проекта
+----
+	|- __init__.py - файл, чтобы сообщить питону что данная директория является пакетом
+	|- settings.py - настройки
+	|- urls.py - корневая URL привязка
+	|- wsgi.py - файл для вебсерверов
+
+</code></pre></div></div>
+
+<p>что внутри settings.py</p>
+
+<p><code class="highlighter-rouge">INSTALLED_APPS</code> - список установленных приложений
+<code class="highlighter-rouge">DATABASES</code> - настройка для соединения с БД</p>
+
+<p>Как сделать, чтобы приложения были внутри папки apps в нашем проекте.</p>
+
+<p>Создаем приложение</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python manage.py startapp custom_app_name
+</code></pre></div></div>
+
+<p>В файл settings.py дописываем небольшой код. Будет выглядеть типа так</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+import os, sys
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.insert(0, os.path.join(PROJECT_ROOT, '_apps_'))
+...
+
+</code></pre></div></div>
+
+<p>`+ Внутри проекта создаем папку apps, а внутрь закидываем наше созданное приложение.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>manage.py
+
+project-name
+	|- __init__.py
+	|- settings.py
+	|- urls.py
+	|- wsgi.py
+	|-apps
+		|-custom_app_name
+			|- migrations
+			|-_init_.py
+			|- admin.py - тут будем указывать, какие данные будут редактироваться в админке
+			|- apps.py - указываем конфиг нашего приложения
+			|- models.py - указываем модель нашего приложения
+			|- test.py - файл, в котором можно прописывать тесты
+			|- views.py - тут прописываем логику приложения
+			|- urls.py (сами создаем) - url привязка локальная для данного приложения
+			|- forms.py (сами создаем) - для работы с формами
+
+</code></pre></div></div>
+
+<h2 id="как-создать-страницу-роутинг-в-django">Как создать страницу (роутинг в Django)</h2>
+
+<h2 id="модели">Модели</h2>
+
+<p>В файле model.py - мы объясняем джанге из чего состоит наше приложение. Что ей хранить в БД</p>
+
+<h1 id="миграции">Миграции</h1>
+<p>Такой метод благодаря которому джанго понимает какие изменения и когда он вносит в БД, чтобы можно было откатываться и тп</p>
+
+<p>Чтобы создать миграцию нужно</p>
+
+<ol>
+  <li>Добавить наше приложение в файл settings.py в секцию installedAPPS</li>
+</ol>
+
+<p>будет выглядеть типа так</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s">'django.contrib.admin'</span><span class="p">,</span>
+    <span class="s">'django.contrib.auth'</span><span class="p">,</span>
+    <span class="s">'django.contrib.contenttypes'</span><span class="p">,</span>
+    <span class="s">'django.contrib.sessions'</span><span class="p">,</span>
+    <span class="s">'django.contrib.messages'</span><span class="p">,</span>
+    <span class="s">'django.contrib.staticfiles'</span><span class="p">,</span>
+    <span class="s">'atricles.apps.AtriclesConfig'</span><span class="p">,</span> <span class="c1"># наше добавленное приложение
+</span><span class="p">]</span>
+</code></pre></div></div>
+
+<ol>
+  <li>Создать и запустить миграцию</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python manage.py makemigrations your_app_name
+Migrations <span class="k">for</span> <span class="s1">'articles'</span>:
+  myfirst/apps/articles/migrations/0001_initial.py
+    - Create model Article
+    - Create model Comment
+<span class="nv">$ </span>python manage.py migrate
+</code></pre></div></div>
+
+<h2 id="orm-django">ORM Django</h2>
+
+:ET

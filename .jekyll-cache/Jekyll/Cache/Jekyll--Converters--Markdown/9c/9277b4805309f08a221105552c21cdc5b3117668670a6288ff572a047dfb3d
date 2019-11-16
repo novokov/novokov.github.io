@@ -1,0 +1,31 @@
+I"}<p>Интересные гайды:</p>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=9ShPY5YhVOw">Google Analytics API in Your Website</a></li>
+  <li><a href="https://www.youtube.com/watch?v=EujLlA7MM-c">Google Analytics Dashboard with Google Sheets (Reporting API)</a></li>
+</ul>
+
+<!-- image
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url) 
+
+-->
+
+<!-- Link
+[GitHub](http://github.com)
+--->
+
+<!-- to-do list
+- [x] this is a complete item
+- [ ] this is an incomplete item
+-->
+
+<!-- Table
+
+First Header | Second Header
+------------ | -------------
+Content cell 1 | Content cell 2
+Content column 1 | Content column 2
+
+-->
+:ET

@@ -1,0 +1,127 @@
+I"<p>Для начала отключим проверку обновлений 
+Для этого сделем следующее:
+Preferences -&gt; Settings - User и добавить туда следующую строчку:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"update_check": false, 
+</code></pre></div></div>
+
+<h2 id="1-настройка-package-control">1. Настройка Package Control</h2>
+<ul>
+  <li>Нажимаем ctrl+shift+p</li>
+  <li>вводим туда install package control</li>
+  <li>появится окошко , что все ок</li>
+</ul>
+
+<h2 id="2-установка-пакетов">2. Установка пакетов</h2>
+
+<ul>
+  <li>Нажимаем ctrl+shift+p</li>
+  <li>открываем package control</li>
+  <li>устанавливаем пакеты:</li>
+  <li>emmet</li>
+  <li>AutoFileName - дополняет код при написании путей до файлов в вёрстке;</li>
+  <li>Gist - подключает в Sublime Text возможность использовать сервис сниппетов кода GitHub Gist. Урок по Gist;</li>
+  <li>Sass - плагин для подсветки Sass синтаксиса в Sass и Scss файлах. Раскрывает Emmet в Sass файлах.</li>
+  <li>One Dark Color Scheme - цветовая схема для подсветки кода;</li>
+  <li>One Dark Material - Theme - тема оформления UI Sublime Text.</li>
+  <li>Sublime Jekyll - чтобы как нормальный человек работать с jekyll сайтов в саблайме.</li>
+</ul>
+
+<h2 id="3-открываем-preferences---settings-и-вставляем-пресет">3. Открываем preferences - Settings и вставляем пресет</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "show_definitions": false,
+    "auto_complete": false,
+    "bold_folder_labels": true,
+    "color_scheme": "Packages/One Dark Material - Theme/schemes/OneDark.tmTheme",
+    "fold_buttons": false,
+    "font_size": 10,
+    "highlight_line": true,
+    "indent_guide_options":
+    [
+        "draw_normal",
+        "draw_active"
+    ],
+    "line_padding_bottom": 2,
+    "line_padding_top": 2,
+    "margin": 2,
+    "material_theme_compact_sidebar": true,
+    "material_theme_compact_panel": true,
+    "material_theme_small_statusbar": true,
+    "material_theme_small_tab": true,
+    "tab_size": 2,
+    "theme": "OneDarkMaterial.sublime-theme",
+    "word_wrap": "false",
+
+}
+</code></pre></div></div>
+
+<h2 id="4-неплохо-бы-поставить-пакет-sublime-jekyll">4. Неплохо бы поставить пакет sublime-jekyll</h2>
+<p><a href="https://sublime-jekyll.readthedocs.io/en/latest/" target="_blank">Документация пакета sublime-jekyll</a></p>
+
+<ol>
+  <li>Устанавлиаем пакет через <code class="highlighter-rouge">ctrl + shift + p</code> введя jekyll.</li>
+  <li>Установили, ок.</li>
+  <li>Далее в User-Settings дописываем конфигурацию для пакета.
+Локальный реп лежит всегда по пути <code class="highlighter-rouge">D:\\Documents\\Github Repository\\sitename.github.io</code>
+Дописываем (копипастим) следующие строчки в user settings</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"Jekyll":
+    {
+        "jekyll_drafts_path": "D:\\Documents\\Github Repository\\akulich1.github.io\\_drafts",
+        "jekyll_posts_path": "D:\\Documents\\Github Repository\\akulich1.github.io\\_posts",
+        "jekyll_uploads_path": "D:\\Documents\\Github Repository\\akulich1.github.io\\_uploads",
+        "jekyll_templates_path": "D:\\Documents\\Github Repository\\akulich1.github.io\\_templates",
+    },
+</code></pre></div></div>
+
+<ol>
+  <li>Все, все команды для плагина доступны из <code class="highlighter-rouge">ctrl + shift + p</code>. Описание к командам <a href="https://sublime-jekyll.readthedocs.io/en/latest/commands.html" target="_blank">тут</a></li>
+</ol>
+
+<p>Код шаблона <code class="highlighter-rouge">template-name.yaml</code>, что в <code class="highlighter-rouge">_templates</code> лежит.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># defaul post</span>
+<span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s">basic</span>
+<span class="na">categories</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">uncategorised yet</span>
+<span class="na">tags</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">untagged yet</span>
+<span class="nn">---</span>
+
+<span class="s">&lt;!-- image</span>
+<span class="kt">![GitHub</span> <span class="s">Logo](/images/logo.png)</span>
+<span class="na">Format</span><span class="pi">:</span> <span class="kt">![Alt</span> <span class="s">Text](url)</span> 
+
+<span class="s">--&gt;</span>
+
+<span class="s">&lt;!-- Link</span>
+<span class="pi">[</span><span class="nv">GitHub</span><span class="pi">]</span><span class="s">(http://github.com)</span>
+<span class="s">---&gt;</span>
+
+<span class="s">&lt;!-- to-do list</span>
+<span class="pi">-</span> <span class="pi">[</span><span class="nv">x</span><span class="pi">]</span> <span class="s">this is a complete item</span>
+<span class="pi">-</span> <span class="pi">[</span> <span class="pi">]</span> <span class="s">this is an incomplete item</span>
+<span class="s">--&gt;</span>
+
+<span class="s">&lt;!-- Table</span>
+
+<span class="s">First Header | Second Header</span>
+<span class="s">------------ | -------------</span>
+<span class="s">Content cell 1 | Content cell </span><span class="m">2</span>
+<span class="s">Content column 1 | Content column </span><span class="m">2</span>
+
+<span class="s">--&gt;</span>
+</code></pre></div></div>
+
+<h2 id="5-ну-и-последним-шагом-поставим-md-preview-в-sublime">5. Ну и последним шагом поставим md preview в sublime</h2>
+
+<p><a href="https://packagecontrol.io/packages/MarkdownLivePreview">Ссылка на пакет</a></p>
+
+<ul>
+  <li>через <code class="highlighter-rouge">ctrl + shift + p</code> устанавливаем markdown livepreview</li>
+  <li>Из md файла превью запускается через <code class="highlighter-rouge">alt+ m</code></li>
+</ul>
+:ET

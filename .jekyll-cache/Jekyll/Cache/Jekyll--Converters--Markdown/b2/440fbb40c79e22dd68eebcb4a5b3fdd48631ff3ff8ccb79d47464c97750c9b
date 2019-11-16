@@ -1,0 +1,75 @@
+I"�<p><i>Еще нужно дописать про копирование, поиск и другие операции в Терминале</i></p>
+
+<p>Чтобы показать список файлов и папок в текущей директории:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">ls</span>
+</code></pre></div></div>
+
+<p>Чтобы узнать в каком директории мы нахдимся (print working directory):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">pwd</span>
+</code></pre></div></div>
+
+<p>Чтобы создать директорий:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir </span>folder_name
+</code></pre></div></div>
+
+<p>Чтобы изменить директорию (и мы попадем в папку folder_name):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>folder_name
+</code></pre></div></div>
+
+<p>Чтобы выйти на уровень выше:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ..
+</code></pre></div></div>
+
+<p>Чтобы удалить директорию:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-r</span> folder_name
+</code></pre></div></div>
+
+<p>Чтобы создать файл в текущей директории:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">touch </span>file_name.txt
+</code></pre></div></div>
+
+<p>Чтобы что-то записать в файл:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"Это просто текст"</span> <span class="o">&gt;</span> file_name.txt
+</code></pre></div></div>
+
+<p>Чтобы не перезаписывать текст внутри файла, а <strong>дописать</strong>. Текст вводится обычными строчками:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"Это уже дописанный текст"</span> <span class="o">&gt;&gt;</span> file_name.txt
+</code></pre></div></div>
+
+<p>Чтобы как-то посмотреть, что лежит внутри файла:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>file_name.txt
+</code></pre></div></div>
+
+<p>Таким же образом можно создать <code class="highlighter-rouge">python</code> скрипт. Файл создастся автоматически.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"print('Hello World! Iam text from file.')"</span> <span class="o">&gt;</span> code.py
+</code></pre></div></div>
+
+<p>Чтобы запустить <code class="highlighter-rouge">python</code> файл используем команду (произойдет магия):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python code.py
+</code></pre></div></div>
+
+<p>Чтобы удалить файл используем:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>code.py
+</code></pre></div></div>
+
+<p>Чтобы посмотреть где находится программа <code class="highlighter-rouge">python</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>which python
+</code></pre></div></div>
+
+<p>Важно не называть папки/файлы кириллицей</p>
+
+:ET

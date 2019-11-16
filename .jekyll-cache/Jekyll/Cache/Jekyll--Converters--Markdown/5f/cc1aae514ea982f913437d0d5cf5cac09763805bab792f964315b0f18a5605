@@ -1,0 +1,42 @@
+I"�<p>1) Проверим текущую версию Python.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python --version
+Python 3.7.3
+</code></pre></div></div>
+
+<p>2) Создаем директорию с нашим проектом и перейдем в нее.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ mkdir project_folder_name
+$ cd project_folder_name
+</code></pre></div></div>
+
+<p>3) Создаем virtual environment</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ python -m venv venv
+</code></pre></div></div>
+
+<p>4) Чтобы запустить venv, нужно из родительского каталога запустить</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ source venv/bin/activate
+</code></pre></div></div>
+
+<p>5) Установим туда Django</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip install Django==2.1.5
+</code></pre></div></div>
+<p>Если устанавливаем Flask, то используем</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip install flask
+</code></pre></div></div>
+
+<p>6) Создадим файлы стартового проекта</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ django-admin startproject my_project
+</code></pre></div></div>
+
+<p>7) Запустим Django</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd my_project
+$ python manage.py runserver
+</code></pre></div></div>
+:ET

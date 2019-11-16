@@ -1,0 +1,4 @@
+1. перейти в домашнюю директорию
+2. source ~/.bash_profile
+3. перейти в директорию с проектом
+4. jekyll build или jekyll serve

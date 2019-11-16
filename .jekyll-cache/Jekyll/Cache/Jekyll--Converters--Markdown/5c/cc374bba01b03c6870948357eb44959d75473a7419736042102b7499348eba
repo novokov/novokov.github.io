@@ -1,0 +1,32 @@
+I"�<ul>
+  <li>выделили диапазон</li>
+  <li>кликнули “формат”</li>
+  <li>условное форматирование</li>
+  <li>форматирование ячеек “Ваша формула”</li>
+  <li>вставили формулу <code class="highlighter-rouge">=AND(NOT(ISBLANK(A1)); COUNTIF($A$1:$F; "=" &amp; A1) &gt; 1)</code></li>
+  <li>магия</li>
+</ul>
+
+<!-- image
+![GitHub Logo](/images/logo.png)
+Format: ![Alt Text](url)
+-->
+
+<!-- Link
+[GitHub](http://github.com)
+--->
+
+<!-- to-do list
+- [x] this is a complete item
+- [ ] this is an incomplete item
+-->
+
+<!-- Table
+
+First Header | Second Header
+------------ | -------------
+Content cell 1 | Content cell 2
+Content column 1 | Content column 2
+
+-->
+:ET
