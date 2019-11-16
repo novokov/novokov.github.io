@@ -1,4 +1,121 @@
 <header class="site-header">
+<!-- search styles start -->
+<style>
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.openBtn {
+  /*background: #f1f1f1;*/
+  border: none;
+  /*padding: 10px 15px;*/
+  cursor: pointer;
+}
+
+.openBtn:hover {
+  background: #bbb;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.overlay-content {
+  position: relative;
+  top: 20%;
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+  margin: auto;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+.overlay .closebtn:hover {
+  color: #ccc;
+}
+
+.overlay input[type=text] {
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+  width: 100%;
+  background: white;
+}
+
+.overlay input[type=text]:hover {
+  background: #f1f1f1;
+}
+
+.overlay button {
+  float: left;
+  width: 20%;
+  padding: 15px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.overlay ul {
+  position: relative;
+  top: 20%;
+  width: 80%;
+  text-align: left;
+  padding-left: 10px;
+  background: #fff;
+  margin-top: 30px;
+  margin: auto;
+  z-index: -1;
+}
+
+.overlay ul li {
+  border-bottom: 1px solid #000;
+  padding-right: 5px;
+}
+
+.overlay button:hover {
+  background: #bbb;
+}
+</style>
+<!-- search styles end -->
+
+  <!-- Search overlay start -->
+<div id="myOverlay" class="overlay">
+  <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+  <div class="overlay-content">
+    <!-- <form action=""> -->
+      <!-- <input type="text" placeholder="Search.." name="search"> -->
+    <!-- </form> -->
+    <input class="input-search" type="text" name="" value="" placeholder="Search for answers..." id="search-input">
+      </div>
+    <ul id="results-container"></ul>
+      <!-- <div class="header--block--result"></div> -->
+  </div>
+</div>
+<!-- Search overlay end -->
+
+
 
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
@@ -16,7 +133,6 @@
             </svg>
           </span>
         </label>
-
         <div class="trigger">
           {%- for path in page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
@@ -24,8 +140,25 @@
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
+          <search-tag>
+            <a class="openBtn page-link" onclick="openSearch()">Search</a>
+          </search-tag>
         </div>
       </nav>
     {%- endif -%}
   </div>
+
+
+<!-- search script start -->
+
+<script>
+function openSearch() {
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function closeSearch() {
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+<!-- search script end -->
 </header>
