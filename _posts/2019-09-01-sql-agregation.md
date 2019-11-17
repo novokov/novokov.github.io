@@ -90,3 +90,26 @@ mysql> SELECT COUNT(project_name) num_of_projects, SUM(budget) as budget, AVG(DA
 select distinct maker from product where type = 'Printer';
 ```
 
+# SQL-ex задачи
+
+6. Для каждого производителя, выпускающего ПК-блокноты c объёмом жесткого диска не менее 10 Гбайт, найти скорости таких ПК-блокнотов. Вывод: производитель, скорость
+
+
+```sql
+SELECT DISTINCT product.maker, laptop.speed FROM Product INNER JOIN laptop ON product.model = laptop.model where laptop.hd >= 10 ORDER BY laptop.speed
+
+```
+
+7. Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
+
+```
+SELECT DISTINCT product.model, PC.price FROM Product INNER JOIN PC ON product.model = pc.model WHERE product.maker = 'B'
+
+UNION
+
+SELECT DISTINCT product.model, Laptop.price FROM Product INNER JOIN Laptop ON product.model = laptop.model WHERE product.maker = 'B'
+
+UNION
+
+SELECT DISTINCT product.model, Printer.price FROM Product INNER JOIN Printer ON product.model = printer.model WHERE product.maker = 'B'
+```
