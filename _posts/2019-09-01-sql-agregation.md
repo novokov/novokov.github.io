@@ -113,3 +113,4 @@ UNION
 
 SELECT DISTINCT product.model, Printer.price FROM Product INNER JOIN Printer ON product.model = printer.model WHERE product.maker = 'B'
 ```
+
