@@ -67,9 +67,9 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="card mb-2 shadow-sm">
-                      <!-- <iframe title="vimeo-player" src="https://player.vimeo.com/video/366295637" width="100%" height="225px" frameborder="0" allowfullscreen></iframe> -->
+
                       <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/387310308"></iframe>
+                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/387310308" allowfullscreen></iframe>
                       </div>
                     <!-- <div class="card-body">
                         <h4 class="my-0 font-weight-normal">Video 1</h4>
@@ -79,9 +79,8 @@
                 </div>
                 <div class="col-md-6">
                   <div class="card mb-2 shadow-sm">
-                      <!-- <iframe title="vimeo-player" src="https://player.vimeo.com/video/366295637" width="100%" height="225px" frameborder="0" allowfullscreen></iframe> -->
                       <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/366267703"></iframe>
+                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/366267703" allowfullscreen></iframe>
                       </div>
                     <!-- <div class="card-body">
                         <h4 class="my-0 font-weight-normal">Video 1</h4>
