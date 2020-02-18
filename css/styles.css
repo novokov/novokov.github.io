@@ -1,0 +1,16 @@
+.container .nav-pills {
+    margin-bottom: 0rem!important;
+}
+.nav-pills .nav-item {
+    /* background-color: red; */
+    padding-top: 1px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #111;
+    background-color: #ffffff;
+}
+
+.nav-pills a {
+    color: #fff;
+}
